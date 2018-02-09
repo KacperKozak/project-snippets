@@ -4,7 +4,7 @@
   "description": "",
   "main": "cli/index.js",
   "scripts": {
-    "create": "node ./cli"
+    "snippet": "node ./cli"
   },
   "repository": {
     "type": "git",
