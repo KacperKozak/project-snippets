@@ -19,6 +19,7 @@
   "dependencies": {
     "caporal": "^0.9.0",
     "glob": "^7.1.2",
-    "inquirer": "^5.1.0"
+    "inquirer": "^5.1.0",
+    "ncp": "^2.0.0"
   }
 }

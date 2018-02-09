@@ -7,7 +7,12 @@ const glob = require('glob');
 const createSnippet = require('./createSnippet');
 const pkg = require('../package.json');
 
-const snippetsList = glob.sync('./.snippets/**/*.tpl/');
+const snippetsList = glob
+    .sync('./.snippets/**/*.snippet', { nodir: true })
+    .concat(glob.sync('./.snippets/**/*.snippet/'))
+    .sort();
+
+console.log(snippetsList);
 
 caporal
     .command('create', 'Create file(s) from snippet')
@@ -19,6 +24,7 @@ caporal
                     name: 'path',
                     message: 'What do you want to do?',
                     choices: snippetsList,
+                    transformer: path => path.match(/^\.\/\.snippets\/(.+)\.snippet/)[1],
                 },
                 {
                     type: 'input',
