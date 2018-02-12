@@ -7,10 +7,7 @@ const glob = require('glob');
 const createSnippet = require('./createSnippet');
 const pkg = require('../package.json');
 
-const snippetsList = glob
-    .sync('./.snippets/**/*.snippet', { nodir: true })
-    .concat(glob.sync('./.snippets/**/*.snippet/'))
-    .sort();
+const snippetsList = glob.sync('./.snippets/**/*.snippet/');
 
 console.log(snippetsList);
 
