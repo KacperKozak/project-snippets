@@ -1,22 +1,50 @@
-const process = require('process');
+'use strict';
+
 const fs = require('fs');
-const path = require('path');
-const ncp = require('ncp');
 const glob = require('glob');
+const ejs = require('ejs');
+const { trimEnd } = require('lodash');
+
+const prepareCases = require('./helpers/prepareCases');
+const replaceFileVars = require('./helpers/replaceFileVars');
+const snippetsToSrcPath = require('./helpers/snippetsToSrcPath');
+const copyFileWithTransform = require('./helpers/copyFileWithTransform');
 
 function createSnippet(snippetPath, options) {
     console.log('createSnippet', snippetPath, options);
 
-    const srcPath = snippetPath.replace(/^\.\/\.snippets\//, '');
+    const srcPath = snippetsToSrcPath(snippetPath);
 
     if (!fs.lstatSync(snippetPath).isDirectory()) {
-        console.error('All snippets should be a directory!');
-        return process.exit(1);
+        throw `Snippet [${snippetPath}] is a file, all snippets should be a directory with .snippet on end!`;
     }
 
     const files = glob.sync(snippetPath + '**/*.tpl');
-    console.log(files);
-    ncp(snippetPath, srcPath, console.log);
+    const dirs = glob.sync(snippetPath + '*/**/');
+    const names = prepareCases('some name', options.name);
+
+    dirs.forEach(dir => {
+        const srcDir = snippetsToSrcPath(dir);
+        const rdyDir = replaceFileVars(srcDir, names);
+
+        if (fs.existsSync(rdyDir)) {
+            throw `Directory [${rdyDir}] already exists!`;
+        }
+        fs.mkdirSync(rdyDir);
+    });
+
+    files.forEach(file => {
+        const srcFile = snippetsToSrcPath(file);
+        const noTplFile = trimEnd(srcFile, '.tpl');
+        const rdyFile = replaceFileVars(noTplFile, names);
+
+        copyFileWithTransform(
+            file,
+            rdyFile,
+            content => ejs.render(content, names),
+            console.log,
+        );
+    });
 }
 
 module.exports = createSnippet;
