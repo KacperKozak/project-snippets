@@ -2,6 +2,8 @@
 
 Keep code snippets directly in your project repository and let anyone create files easily and quickly.
 
+![](./docs/project-snippets-cli-example.gif)
+
 ## Quick start and how it works
 
 ### Installation
@@ -29,6 +31,8 @@ Now you have available `snippet` command, let's use this in `package.json` as `c
 You can run this by typing `yarn run create` or `npm run create`, but first you need `.snippets` directory with your code templates.
 
 ### Snippets directory
+
+![](./docs/example-files-tree.png)
 
 For example you like to make a snippet for components in `/src/components/*.js`, then `.snippets` directory structure should look like this:
 
