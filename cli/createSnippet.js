@@ -11,8 +11,6 @@ const replaceFileVars = require('./helpers/replaceFileVars');
 const snippetsToSrcPath = require('./helpers/snippetsToSrcPath');
 const copyFileWithTransform = require('./helpers/copyFileWithTransform');
 
-console.log(chalk`${'asdasd/sadasd.sd'} {green.bold ✔}`);
-
 function createSnippet(snippetPath, options) {
     const srcPath = snippetsToSrcPath(snippetPath);
 
