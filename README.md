@@ -1,6 +1,6 @@
 # Project Snippets
 
-CLI command for generating code from local snippets that live in your project.
+Keep code snippets directly in your project repository and let anyone create files easily and quickly.
 
 ## Quick start and how it works
 
