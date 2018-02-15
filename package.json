@@ -1,21 +1,24 @@
 {
-  "name": "local-code-snippets",
+  "name": "project-snippets",
   "version": "0.1.0",
   "description": "",
   "main": "cli/index.js",
   "scripts": {
     "create": "node ./cli create"
   },
+  "bin": {
+    "snippet": "./cli/index.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KacperKozak/local-code-snippets.git"
+    "url": "git+https://github.com/KacperKozak/project-snippets.git"
   },
   "author": "Kacper Kozak <kacperkk@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KacperKozak/local-code-snippets/issues"
+    "url": "https://github.com/KacperKozak/project-snippets/issues"
   },
-  "homepage": "https://github.com/KacperKozak/local-code-snippets#readme",
+  "homepage": "https://github.com/KacperKozak/project-snippets#readme",
   "dependencies": {
     "caporal": "^0.9.0",
     "chalk": "^2.3.1",
