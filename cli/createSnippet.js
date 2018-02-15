@@ -3,6 +3,7 @@
 const fs = require('fs');
 const glob = require('glob');
 const ejs = require('ejs');
+const chalk = require('chalk');
 const { trimEnd } = require('lodash');
 
 const prepareCases = require('./helpers/prepareCases');
@@ -10,9 +11,9 @@ const replaceFileVars = require('./helpers/replaceFileVars');
 const snippetsToSrcPath = require('./helpers/snippetsToSrcPath');
 const copyFileWithTransform = require('./helpers/copyFileWithTransform');
 
-function createSnippet(snippetPath, options) {
-    console.log('createSnippet', snippetPath, options);
+console.log(chalk`${'asdasd/sadasd.sd'} {green.bold ✔}`);
 
+function createSnippet(snippetPath, options) {
     const srcPath = snippetsToSrcPath(snippetPath);
 
     if (!fs.lstatSync(snippetPath).isDirectory()) {
@@ -28,7 +29,7 @@ function createSnippet(snippetPath, options) {
         const rdyDir = replaceFileVars(srcDir, names);
 
         if (fs.existsSync(rdyDir)) {
-            throw `Directory [${rdyDir}] already exists!`;
+            throw `${rdyDir} already exists!`;
         }
         fs.mkdirSync(rdyDir);
     });
@@ -42,7 +43,9 @@ function createSnippet(snippetPath, options) {
             file,
             rdyFile,
             content => ejs.render(content, names),
-            console.log,
+            path => {
+                console.log(chalk`${path} {green.bold ✔}`);
+            },
         );
     });
 }
