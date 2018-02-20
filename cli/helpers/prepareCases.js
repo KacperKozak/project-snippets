@@ -1,4 +1,10 @@
-const { camelCase, pascalCase, snakeCase, paramCase } = require('change-case');
+const {
+    camelCase,
+    pascalCase,
+    snakeCase,
+    paramCase,
+    constantCase,
+} = require('change-case');
 
 function prepareCases(key, value) {
     return {
