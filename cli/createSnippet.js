@@ -4,6 +4,7 @@ const fs = require('fs');
 const glob = require('glob');
 const ejs = require('ejs');
 const chalk = require('chalk');
+const ejsLint = require('ejs-lint');
 const { trimEnd } = require('lodash');
 
 const prepareCases = require('./helpers/prepareCases');
@@ -21,6 +22,10 @@ function createSnippet(snippetPath, options) {
     const files = glob.sync(snippetPath + '**/*.tpl');
     const dirs = glob.sync(snippetPath + '*/**/');
     const names = prepareCases('some name', options.name);
+
+    if (!files.length) {
+        throw chalk.red`No files found with the extension .tpl in ${snippetPath}`;
+    }
 
     dirs.forEach(dir => {
         const srcDir = snippetsToSrcPath(dir);
