@@ -102,6 +102,7 @@ The following variables are now available:
 * pascalCase: `SomeName`
 * snakeCase: `some_name`
 * paramCase: `some-name`
+* constantCase: `SOME_NAME`
 
 
 ### Roadmap

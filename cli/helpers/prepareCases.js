@@ -6,6 +6,7 @@ function prepareCases(key, value) {
         [pascalCase(key)]: pascalCase(value),
         [snakeCase(key)]: snakeCase(value),
         [paramCase(key)]: paramCase(value),
+        [constantCase(key)]: constantCase(value),
     };
 }
 
