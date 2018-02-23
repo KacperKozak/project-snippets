@@ -10,21 +10,11 @@ const prepareCases = require('./helpers/prepareCases');
 const replaceFileVars = require('./helpers/replaceFileVars');
 const snippetsToSrcPath = require('./helpers/snippetsToSrcPath');
 const copyFileWithTransform = require('./helpers/copyFileWithTransform');
+const getFilesAndDirs = require('./helpers/getFilesAndDirs');
 
-function createSnippet(snippetPath, options) {
-    const srcPath = snippetsToSrcPath(snippetPath);
-
-    if (!fs.lstatSync(snippetPath).isDirectory()) {
-        throw `Snippet [${snippetPath}] is a file, all snippets should be a directory with .snippet on end!`;
-    }
-
-    const files = glob.sync(snippetPath + '**/*.tpl');
-    const dirs = glob.sync(snippetPath + '*/**/');
-    const names = prepareCases('some name', options.name);
-
-    if (!files.length) {
-        throw chalk.red`No files found with the extension .tpl in ${snippetPath}`;
-    }
+function createSnippet(snippetPath, values, options) {
+    const { files, dirs } = getFilesAndDirs(snippetPath);
+    const names = prepareCases('some name', values.name);
 
     dirs.forEach(dir => {
         const srcDir = snippetsToSrcPath(dir);
