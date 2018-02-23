@@ -4,7 +4,6 @@ const fs = require('fs');
 const glob = require('glob');
 const ejs = require('ejs');
 const chalk = require('chalk');
-const ejsLint = require('ejs-lint');
 const { trimEnd } = require('lodash');
 
 const prepareCases = require('./helpers/prepareCases');
