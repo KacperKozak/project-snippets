@@ -1,16 +1,19 @@
 'use strict';
 
 const fs = require('fs');
+const { trim } = require('lodash');
 
-function copyFileWithTransform(fromPath, toPath, transform, rdy = null) {
-    fs.readFile(fromPath, 'utf8', (err, content) => {
-        if (err) throw err;
+function copyFileWithTransform(fromPath, toPath, transform) {
+    const content = fs.readFileSync(fromPath, 'utf8');
 
-        fs.writeFile(toPath, transform(content), err => {
-            if (err) throw err;
-            rdy && rdy(toPath);
-        });
-    });
+    const transformedContent = transform(content);
+
+    if (!trim(transformedContent)) {
+        return false;
+    }
+
+    fs.writeFileSync(toPath, transformedContent);
+    return true;
 }
 
 module.exports = copyFileWithTransform;

@@ -108,12 +108,33 @@ The following variables are now available:
 * paramCase: `some-name`
 * constantCase: `SOME_NAME`
 
+#### Custom variables
+
+If you need more options for your snippet you can create the `options.json` file in snippet directory. (And remember: empty file = no file)
+
+Example `.snippets/src/components/Component.snippet/options.json`:
+```json
+[
+    {
+        "type": "confirm",
+        "name": "styles",
+        "message": "With styles?"
+    },
+    {
+        "type": "confirm",
+        "name": "tests",
+        "message": "With unit tests?"
+    }
+]
+```
+
 
 ### Roadmap
 
 * [x] Simple snippet generator
 * [x] `--dry-run` option
-* [ ] Custom variables in snippets
+* [x] Custom variables in snippets
+* [ ] Handlebars templates support
 * [ ] `init` command to example `.snippet` and script in `package.json`
 * [ ] Plugins:
     * [ ] Atom

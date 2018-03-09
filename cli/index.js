@@ -4,6 +4,7 @@
 const caporal = require('caporal');
 const inquirer = require('inquirer');
 const glob = require('glob');
+const chalk = require('chalk');
 const prepareSnippet = require('./prepareSnippet');
 
 const snippetsDirList = glob.sync('./.snippets/**/*.snippet/');
@@ -34,6 +35,11 @@ caporal
                 },
             ])
             .then(({ path, ...values }) => {
+                if (!values.name) {
+                    console.log(chalk.red`Name is required!`);
+                    return process.exit(1);
+                }
+
                 const fullPath = snippetsDirList[snippetsList.indexOf(path)];
                 prepareSnippet(fullPath, values, options);
             })

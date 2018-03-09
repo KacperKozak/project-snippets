@@ -5,6 +5,7 @@ const chalk = require('chalk');
 
 const copyFileWithTransform = require('./helpers/copyFileWithTransform');
 const getFilesAndDirs = require('./helpers/getFilesAndDirs');
+const removeEmptyDirs = require('./helpers/removeEmptyDirs');
 
 const getDestinationPath = require('./lib/getDestinationPath');
 const createVars = require('./lib/createVars');
@@ -25,15 +26,18 @@ function createSnippet(snippetPath, values) {
     files.forEach(file => {
         const rdyFile = getDestinationPath(file, vars);
 
-        copyFileWithTransform(
-            file,
-            rdyFile,
-            content => renderFile(content, vars),
-            path => {
-                console.log(chalk`${path} {green.bold ✔}`);
-            },
+        const created = copyFileWithTransform(file, rdyFile, content =>
+            renderFile(content, vars),
         );
+
+        if (created) {
+            console.log(chalk`${rdyFile} {green.bold ✔}`);
+        } else {
+            console.log(chalk`${rdyFile} {gray.bold ✘}`);
+        }
     });
+
+    removeEmptyDirs(getDestinationPath(snippetPath, vars));
 }
 
 module.exports = createSnippet;

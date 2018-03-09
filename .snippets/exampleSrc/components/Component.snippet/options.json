@@ -1,0 +1,12 @@
+[
+    {
+        "type": "confirm",
+        "name": "styles",
+        "message": "With styles?"
+    },
+    {
+        "type": "confirm",
+        "name": "tests",
+        "message": "With unit tests?"
+    }
+]
