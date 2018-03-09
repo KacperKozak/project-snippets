@@ -1,7 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-const fsx = require('fs');
 const chalk = require('chalk');
 
 const copyFileWithTransform = require('./helpers/copyFileWithTransform');
@@ -11,7 +10,7 @@ const getDestinationPath = require('./lib/getDestinationPath');
 const createVars = require('./lib/createVars');
 const renderFile = require('./lib/renderFile');
 
-function createSnippet(snippetPath, values, options) {
+function createSnippet(snippetPath, values) {
     const { files, dirs } = getFilesAndDirs(snippetPath);
     const vars = createVars(values);
 

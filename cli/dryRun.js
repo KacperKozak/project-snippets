@@ -16,7 +16,7 @@ function getExtension(filename) {
     return ext[ext.length - 1];
 }
 
-function dryRun(snippetPath, values, options) {
+function dryRun(snippetPath, values) {
     const { files } = getFilesAndDirs(snippetPath);
     const vars = createVars(values);
 

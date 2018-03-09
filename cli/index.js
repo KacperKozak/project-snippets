@@ -5,7 +5,6 @@ const caporal = require('caporal');
 const inquirer = require('inquirer');
 const glob = require('glob');
 const prepareSnippet = require('./prepareSnippet');
-const pkg = require('../package.json');
 
 const snippetsDirList = glob.sync('./.snippets/**/*.snippet/');
 const snippetsList = snippetsDirList.map(
@@ -19,7 +18,7 @@ caporal
         'Show the contents of files without creating them',
         caporal.BOOLEAN,
     )
-    .action(function(args, options, logger) {
+    .action(function(args, options) {
         inquirer
             .prompt([
                 {
