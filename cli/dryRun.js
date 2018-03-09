@@ -2,16 +2,14 @@ module.export = 'use strict';
 
 const fs = require('fs');
 const path = require('path');
-const glob = require('glob');
-const ejs = require('ejs');
 const chalk = require('chalk');
 const highlight = require('cli-highlight').highlight;
-const { trimEnd } = require('lodash');
 
-const prepareCases = require('./helpers/prepareCases');
-const replaceFileVars = require('./helpers/replaceFileVars');
-const snippetsToSrcPath = require('./helpers/snippetsToSrcPath');
 const getFilesAndDirs = require('./helpers/getFilesAndDirs');
+
+const getDestinationPath = require('./lib/getDestinationPath');
+const createVars = require('./lib/createVars');
+const renderFile = require('./lib/renderFile');
 
 function getExtension(filename) {
     var ext = path.extname(filename || '').split('.');
@@ -20,17 +18,15 @@ function getExtension(filename) {
 
 function dryRun(snippetPath, values, options) {
     const { files } = getFilesAndDirs(snippetPath);
-    const names = prepareCases('some name', values.name);
+    const vars = createVars(values);
 
     files.forEach(file => {
-        const srcFile = snippetsToSrcPath(file);
-        const noTplFile = trimEnd(srcFile, '.tpl');
-        const rdyFile = replaceFileVars(noTplFile, names);
+        const rdyFile = getDestinationPath(file, vars);
 
         fs.readFile(file, 'utf8', (err, content) => {
             if (err) throw err;
 
-            const rdyContent = ejs.render(content, names);
+            const rdyContent = renderFile(content, vars);
 
             console.log('\n');
             console.log(chalk.bold(rdyFile));
