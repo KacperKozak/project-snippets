@@ -4,7 +4,7 @@
 const caporal = require('caporal');
 const inquirer = require('inquirer');
 const glob = require('glob');
-const createSnippet = require('./createSnippet');
+const prepareSnippet = require('./prepareSnippet');
 const pkg = require('../package.json');
 
 const snippetsDirList = glob.sync('./.snippets/**/*.snippet/');
@@ -14,6 +14,11 @@ const snippetsList = snippetsDirList.map(
 
 caporal
     .command('create', 'Create file(s) from snippet')
+    .option(
+        '--dry-run',
+        'Show the contents of files without creating them',
+        caporal.BOOLEAN,
+    )
     .action(function(args, options, logger) {
         inquirer
             .prompt([
@@ -29,9 +34,9 @@ caporal
                     message: 'Name',
                 },
             ])
-            .then(({ path, ...options }) => {
+            .then(({ path, ...values }) => {
                 const fullPath = snippetsDirList[snippetsList.indexOf(path)];
-                createSnippet(fullPath, options);
+                prepareSnippet(fullPath, values, options);
             })
             .catch(console.error);
     });

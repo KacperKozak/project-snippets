@@ -94,6 +94,10 @@ export function CircleButton() {
 }
 ```
 
+### CLI options
+
+* `--dry-run` - show the contents of files without creating them
+
 ### Variables
 
 The following variables are now available:
@@ -108,6 +112,7 @@ The following variables are now available:
 ### Roadmap
 
 * [x] Simple snippet generator
+* [x] `--dry-run` option
 * [ ] Custom variables in snippets
 * [ ] `init` command to example `.snippet` and script in `package.json`
 * [ ] Plugins:
