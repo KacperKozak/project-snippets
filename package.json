@@ -4,7 +4,8 @@
   "description": "",
   "main": "cli/index.js",
   "scripts": {
-    "create": "node ./cli create"
+    "create": "node ./cli create",
+    "lint": "eslint ./cli/**/*.js"
   },
   "bin": {
     "snippet": "./cli/index.js"
@@ -28,5 +29,8 @@
     "glob": "^7.1.2",
     "inquirer": "^5.1.0",
     "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2"
   }
 }

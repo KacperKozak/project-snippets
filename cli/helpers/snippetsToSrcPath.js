@@ -3,7 +3,7 @@ function removeSnippetBaseDir(path) {
 }
 
 function removeSnippetNameDir(path) {
-    return path.replace(/[^\/\\]+\.snippet\//, '');
+    return path.replace(/[^/\\]+\.snippet\//, '');
 }
 
 function snippetsToSrcPath(path) {

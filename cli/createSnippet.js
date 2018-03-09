@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const fsx = require('fs');
 const chalk = require('chalk');
 
 const copyFileWithTransform = require('./helpers/copyFileWithTransform');

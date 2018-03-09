@@ -1,4 +1,5 @@
 const glob = require('glob');
+const chalk = require('chalk');
 
 function getFilesAndDirs(snippetPath) {
     const files = glob.sync(snippetPath + '**/*.tpl');
