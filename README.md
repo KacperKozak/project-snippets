@@ -8,7 +8,7 @@ Keep code snippets directly in your project repository and let anyone create fil
 
 ### Installation
 
-First install package:
+First, install the package:
 
 ```bash
 yarn add --dev project-snippets
@@ -79,7 +79,7 @@ And similarly for `(someName).css.tpl`.
 }
 ```
 
-Finally that's all, now you can run this command again and you will receive ready to use `CircleButton.js` and  `circleButton.css` files:
+Finally, that's all, now you can run this command again and you will receive ready to use `CircleButton.js` and  `circleButton.css` files:
 
 ```javascript
 import 'circleButton.css'
@@ -102,11 +102,11 @@ export function CircleButton() {
 
 The following variables are now available:
 
-* camelCase: `someName`
-* pascalCase: `SomeName`
-* snakeCase: `some_name`
-* paramCase: `some-name`
-* constantCase: `SOME_NAME`
+* Camel case: `someName`
+* Pascal case: `SomeName`
+* Snake case: `some_name`
+* Constant case: `SOME_NAME`
+* Param case: `some-name` (IMPORTANT: inside templates use <%= locals['some-name'] %>)
 
 #### Custom variables
 
