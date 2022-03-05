@@ -106,7 +106,7 @@ The following variables are now available:
 * Pascal case: `SomeName`
 * Snake case: `some_name`
 * Constant case: `SOME_NAME`
-* Param case: `some-name` (IMPORTANT: inside templates use <%= locals['some-name'] %>)
+* Param case: `some-name` (IMPORTANT: inside templates use `<%= locals['some-name'] %>`)
 
 #### Custom variables
 
@@ -128,17 +128,3 @@ Example `.snippets/src/components/Component.snippet/options.json`:
 ]
 ```
 
-
-### Roadmap
-
-* [x] Simple snippet generator
-* [x] `--dry-run` option
-* [x] Custom variables in snippets
-* [ ] Handlebars templates support
-* [ ] `init` command to example `.snippet` and script in `package.json`
-* [ ] Plugins:
-    * [ ] Atom
-    * [ ] Visual Studio Code
-    * [ ] Sublime Text
-    * [ ] WebStorm
-* [ ] `generate` command to create snippets from shared resources
