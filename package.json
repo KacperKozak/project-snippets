@@ -25,7 +25,7 @@
     "chalk": "^2.3.1",
     "change-case": "^3.0.1",
     "cli-highlight": "^1.2.3",
-    "ejs": "^2.5.7",
+    "ejs": "^3.1.7",
     "glob": "^7.1.2",
     "inquirer": "^5.1.0",
     "lodash": "^4.17.5"
